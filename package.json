@@ -1,0 +1,161 @@
+{
+  "name": "public-partner-profiles",
+  "version": "1.0.0",
+  "description": "Project Triple P",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon server/server.js --watch server --watch",
+    "build": "cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 next build",
+    "build:staging": "env-cmd -f .env.staging yarn build",
+    "start": "cross-env NODE_ENV=production NODE_OPTIONS='--require ./public/tracer.js' next start",
+    "start:staging": "env-cmd -f .env.staging yarn start",
+    "lint": "eslint .",
+    "lint:css": "stylelint './src/**/*.{js,ts}'",
+    "lintfix": "eslint . --fix",
+    "prepare": "husky install",
+    "prettier": "prettier --write .",
+    "test": "jest --env=jsdom",
+    "test:watch": "jest --env=jsdom --watchAll",
+    "test-overwrite": "jest --env=jsdom -u",
+    "test:coverage": "jest --env=jsdom --coverage"
+  },
+  "lint-staged": {
+    "*.{ts,js,tsx,jsx}": "eslint --cache --fix",
+    "./src/**/*.{ts,js,tsx,jsx}": "yarn test:staged",
+    "./src/**/*.{js,ts}": "stylelint",
+    "*.{ts,js,tsx,jsx,json,yml,md}": "prettier --write",
+    "*.{ts,tsx}": "tsc-files --noEmit"
+  },
+  "jest": {
+    "verbose": true,
+    "testURL": "https://localhost/",
+    "setupFiles": [
+      "<rootDir>/jestsetup.js"
+    ],
+    "moduleNameMapper": {
+      "^@App(.*)$": "<rootDir>/app/$1",
+      "^@Modules(.*)$": "<rootDir>/app/modules/$1",
+      "^@Helpers(.*)$": "<rootDir>/app/helpers/$1",
+      "^@Hooks(.*)$": "<rootDir>/app/hooks/$1",
+      "^@Shared(.*)$": "<rootDir>/app/shared/$1",
+      "^@Pages(.*)$": "<rootDir>/pages/$1",
+      "^@Config(.*)$": "<rootDir>/config/$1",
+      "\\.(css|scss)$": "identity-obj-proxy"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "<rootDir>/app/**/*.js"
+    ],
+    "coverageReporters": [
+      "text-summary"
+    ],
+    "preset": "ts-jest",
+    "transform": {
+      "^.+\\.(jsx?|tsx?)$": "babel-jest",
+      "^.+\\.(sass|scss|svg|jpg|jpeg|png|gif)$": "<rootDir>/jestImgTransform.js"
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ]
+  },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0",
+    "**/@typescript-eslint/eslint-plugin": "~4.1.1",
+    "**/@typescript-eslint/parser": "~4.1.1"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.6.5",
+    "@aroundhome/around-kit": "^11.3.2",
+    "@react-aria/ssr": "^3.1.2",
+    "@sentry/nextjs": "^6.19.7",
+    "@types/ioredis": "^4.28.10",
+    "apollo-link": "^1.2.14",
+    "apollo-link-context": "^1.0.20",
+    "apollo-link-error": "^1.1.13",
+    "autoprefixer": "^10.4.7",
+    "axios": "^0.27.2",
+    "dd-trace": "^2.8.0",
+    "dotenv": "^8.2.0",
+    "graphql": "^16.5.0",
+    "html-react-parser": "^1.4.13",
+    "ioredis": "^5.0.5",
+    "localforage": "^1.10.0",
+    "md5": "^2.3.0",
+    "next": "^12.2.0",
+    "react": "^18.1.0",
+    "react-aria": "^3.15.0",
+    "react-dom": "^18.1.0",
+    "react-ga": "^3.3.0",
+    "react-rating": "^2.0.5",
+    "react-transition-group": "^4.4.2",
+    "styled-components": "^5.3.5",
+    "styled-jsx": "^5.0.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "~5.11.5",
+    "@testing-library/react": "~11.1.0",
+    "@testing-library/user-event": "~12.1.10",
+    "@types/google.maps": "^3.47.3",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^14.14.34",
+    "@types/react": "^17.0.3",
+    "@types/styled-components": "^5.1.9",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
+    "axios-mock-adapter": "^1.16.0",
+    "babel-jest": "^27.0.2",
+    "babel-plugin-styled-components": "^2.0.7",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cross-env": "^7.0.3",
+    "env-cmd": "^10.1.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
+    "enzyme-to-json": "^3.3.5",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "~6.7.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "~3.1.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-useragent": "^1.0.15",
+    "https": "^1.0.0",
+    "husky": ">=6",
+    "jest": "^27.0.4",
+    "jsdom": "^16.6.0",
+    "lint-staged": "^7.2.2",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "prettier": "~2.2.1",
+    "stylelint": "^13.13.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recommended": "^5.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0",
+    "ts-jest": "^27.0.3",
+    "tsc-files": "^1.1.2",
+    "typescript": "^4.2.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "ie 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version",
+      "last 1 ie version"
+    ]
+  }
+}

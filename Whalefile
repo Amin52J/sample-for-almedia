@@ -1,0 +1,8 @@
+whale_version '5.9.4'
+project name: 'partner-profile-ui'
+
+base_image :node, version: '16', network_concurrency: 1
+
+deploy production: { trigger: :manual }
+
+options review_apps: true, review_app_url_path: 'fachfirmen'

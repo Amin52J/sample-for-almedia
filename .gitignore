@@ -1,0 +1,20 @@
+# dependencies
+node_modules
+coverage
+
+# production
+build
+out
+
+# misc
+.idea/
+.next/
+.git/
+.env*.local
+.yarn-error.log
+
+# mac_os
+**/*.DS_Store
+
+# IDEs
+.vscode

@@ -1,0 +1,5 @@
+dist
+*.hbs
+*.snap
+package-lock.json
+.next

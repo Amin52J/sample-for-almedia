@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  development:
+    build:
+      context: .
+    ports:
+      - 8081:8081
+    volumes:
+      - ".:/app"
+      - "/app/node_modules"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      default:
+      aroundhome:
+        aliases:
+          - "partner-profile-ui"
+    depends_on:
+      - redis
+
+  release:
+    build:
+      context: .
+      dockerfile: Dockerfile.release
+      args:
+        ENV: staging
+        BASE_IMAGE_NAME: partner-profile-ui_development
+    ports:
+      - 8080:3000
+    env_file: .env.development
+    networks:
+      default:
+      aroundhome:
+        aliases:
+          - "partner-profile-ui-release"
+
+  redis:
+    image: redis
+    ports:
+      - 16379:6379
+
+networks:
+  aroundhome:
+    external:
+      name: aroundhome

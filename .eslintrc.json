@@ -1,0 +1,72 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier/react",
+    "prettier/@typescript-eslint",
+    "prettier",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "plugins": ["prettier", "react", "react-hooks", "@typescript-eslint", "@typescript-eslint", "import"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.eslint.json",
+    "tsconfigRootDir": "./"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "typescript": {},
+      "alias": [
+        ["@App", "./app"],
+        ["@Modules", "./app/modules"],
+        ["@Helpers", "./app/helpers"],
+        ["@Hooks", "./app/hooks"],
+        ["@Shared", "./app/shared"],
+        ["@Pages", "./pages"],
+        ["@Config", "./config"]
+      ]
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/require-await": 0,
+    "prefer-destructuring": 0,
+    "no-console": [2, { "allow": ["warn", "error", "info"] }],
+    "no-underscore-dangle": [2, { "allow": ["_mfq"] }],
+    "react/destructuring-assignment": ["error", "always"],
+    "react/prop-types": 0,
+    "no-undef": 0,
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx", ".tsx"]
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "react/button-has-type": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/label-has-for": 0,
+    "import/no-named-as-default": 0,
+    "import/extensions": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}

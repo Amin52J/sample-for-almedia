@@ -1,0 +1,5 @@
+# TODO
+test_async:
+  stage: test
+  script:
+    - docker run ${BASE_IMAGE_NAME} yarn test --passWithNoTests
