@@ -1,1 +1,1 @@
-# A Sample project for Oxolo interview
+# A Sample project for Almedia interview
